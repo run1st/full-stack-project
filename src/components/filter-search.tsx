@@ -21,7 +21,8 @@ interface SearchRowProps {
 }*/
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-
+import DisplaySongs from "./displaySongs";
+import allSongs from "./assets/songs";
 interface DropdownProps {
   value: string;
   options: string[];
@@ -82,21 +83,55 @@ const FilterSearch: React.FC<DropdownProps> = ({ value, options }) => {
   };
 
   return (
-    <SearchRowContainer>
+    <div>
       {" "}
-      <SearchInput type="text" placeholder="Search..." />
-      <SearchIcon>&#128269;</SearchIcon>
-      <DropdownContainer>
-        <DropdownButton onClick={toggleDropdown}>{value}</DropdownButton>
-        {isDropdownOpen && (
-          <DropdownMenu>
-            {options.map((option: string, index: number) => (
-              <DropdownMenuItem key={index}>{option}</DropdownMenuItem>
-            ))}
-          </DropdownMenu>
-        )}
-      </DropdownContainer>
-    </SearchRowContainer>
+      <SearchRowContainer>
+        {" "}
+        <SearchInput type="text" placeholder="Search..." />
+        <SearchIcon>&#128269;</SearchIcon>
+        <DropdownContainer>
+          <DropdownButton onClick={toggleDropdown}>{value}</DropdownButton>
+          {isDropdownOpen && (
+            <DropdownMenu>
+              {options.map((option: string, index: number) => (
+                <DropdownMenuItem key={index}>{option}</DropdownMenuItem>
+              ))}
+            </DropdownMenu>
+          )}
+        </DropdownContainer>
+        <DropdownContainer>
+          <DropdownButton onClick={toggleDropdown}>{value}</DropdownButton>
+          {isDropdownOpen && (
+            <DropdownMenu>
+              {options.map((option: string, index: number) => (
+                <DropdownMenuItem key={index}>{option}</DropdownMenuItem>
+              ))}
+            </DropdownMenu>
+          )}
+        </DropdownContainer>
+        <DropdownContainer>
+          <DropdownButton onClick={toggleDropdown}>{value}</DropdownButton>
+          {isDropdownOpen && (
+            <DropdownMenu>
+              {options.map((option: string, index: number) => (
+                <DropdownMenuItem key={index}>{option}</DropdownMenuItem>
+              ))}
+            </DropdownMenu>
+          )}
+        </DropdownContainer>
+        <DropdownContainer>
+          <DropdownButton onClick={toggleDropdown}>{value}</DropdownButton>
+          {isDropdownOpen && (
+            <DropdownMenu>
+              {options.map((option: string, index: number) => (
+                <DropdownMenuItem key={index}>{option}</DropdownMenuItem>
+              ))}
+            </DropdownMenu>
+          )}
+        </DropdownContainer>
+      </SearchRowContainer>
+      <DisplaySongs songList={allSongs} />
+    </div>
   );
 };
 export default FilterSearch;
