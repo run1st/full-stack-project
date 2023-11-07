@@ -4,6 +4,7 @@ import Header from "./components/header";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home";
 import SongList from "./components/Songs";
+import MusicDetail from "./components/music-detail";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" Component={Home}></Route>
         <Route path="/songs" Component={SongList}></Route>
         <Route path="/about"></Route>
+        <Route path="/songs/detail/:id" Component={MusicDetail}></Route>
       </Routes>
     </>
   );

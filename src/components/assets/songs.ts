@@ -1,3 +1,6 @@
+import hana from "./images/hana.jpg";
+import lauren from "./images/lauren.jpg";
+import song from "./images/song.jpg";
 export interface SongsModel {
   id: number;
   title: string;
@@ -7,25 +10,28 @@ export interface SongsModel {
   genre: string;
   releaseYear: number;
   duration: number;
+  image: string;
 }
 const allSongs: SongsModel[] = [
   {
     id: 1,
-    title: "Bohemian Rhapsody",
-    artist: "Queen",
-    album: "A Night at the Opera",
-    genre: "Rock",
-    releaseYear: 1975,
+    title: "Kahin",
+    artist: "HAna Tekle",
+    album: "Habte semay",
+    genre: "walth",
+    releaseYear: 2019,
     duration: 5.55,
+    image: hana,
   },
   {
     id: 2,
-    title: "Imagine",
-    artist: "John Lennon",
-    album: "Imagine",
-    genre: "Pop",
-    releaseYear: 1971,
+    title: "This Girl",
+    artist: "Lauren Daigle",
+    album: "Look Up Child",
+    genre: "contemporary Christian music",
+    releaseYear: 2018,
     duration: 3.03,
+    image: lauren,
   },
   {
     id: 3,
@@ -35,6 +41,7 @@ const allSongs: SongsModel[] = [
     genre: "Rock",
     releaseYear: 1965,
     duration: 6.13,
+    image: song,
   },
   {
     id: 4,
@@ -44,6 +51,7 @@ const allSongs: SongsModel[] = [
     genre: "Pop",
     releaseYear: 1983,
     duration: 4.54,
+    image: song,
   },
   {
     id: 5,
@@ -53,6 +61,7 @@ const allSongs: SongsModel[] = [
     genre: "Rock",
     releaseYear: 1976,
     duration: 6.3,
+    image: song,
   },
   {
     id: 6,
@@ -62,6 +71,7 @@ const allSongs: SongsModel[] = [
     genre: "Rock",
     releaseYear: 1968,
     duration: 7.11,
+    image: song,
   },
   {
     id: 7,
@@ -71,6 +81,7 @@ const allSongs: SongsModel[] = [
     genre: "Rock",
     releaseYear: 1967,
     duration: 2.5,
+    image: song,
   },
   {
     id: 8,
@@ -80,6 +91,7 @@ const allSongs: SongsModel[] = [
     genre: "Soul",
     releaseYear: 1972,
     duration: 4.26,
+    image: song,
   },
   {
     id: 9,
@@ -89,6 +101,7 @@ const allSongs: SongsModel[] = [
     genre: "Disco",
     releaseYear: 1979,
     duration: 4.48,
+    image: song,
   },
   {
     id: 10,
@@ -98,6 +111,127 @@ const allSongs: SongsModel[] = [
     genre: "Rock",
     releaseYear: 1995,
     duration: 4.18,
+    image: song,
+  },
+  {
+    id: 11,
+    title: "Eregna",
+    artist: "HAna Tekle",
+    album: "Habte semay",
+    genre: "walth",
+    releaseYear: 2019,
+    duration: 5.55,
+    image: hana,
+  },
+  {
+    id: 12,
+    title: "Bicha Liben",
+    artist: "HAna Tekle",
+    album: "Habte semay",
+    genre: "walth",
+    releaseYear: 2019,
+    duration: 5.55,
+    image: hana,
+  },
+  {
+    id: 13,
+    title: "Ewinetina Ewnet",
+    artist: "HAna Tekle",
+    album: "Habte semay",
+    genre: "walth",
+    releaseYear: 2019,
+    duration: 5.55,
+    image: hana,
+  },
+  {
+    id: 14,
+    title: "Regichalew",
+    artist: "HAna Tekle",
+    album: "Habte semay",
+    genre: "walth",
+    releaseYear: 2019,
+    duration: 5.55,
+    image: hana,
+  },
+  {
+    id: 15,
+    title: "Filega (Motive)",
+    artist: "HAna Tekle",
+    album: "Habte semay",
+    genre: "walth",
+    releaseYear: 2019,
+    duration: 5.55,
+    image: hana,
+  },
+  {
+    id: 16,
+    title: "Eregna",
+    artist: "HAna Tekle",
+    album: "Habte semay",
+    genre: "walth",
+    releaseYear: 2019,
+    duration: 5.55,
+    image: hana,
+  },
+  {
+    id: 17,
+    title: "Your Wings",
+    artist: "Lauren Daigle",
+    album: "Look Up Child",
+    genre: "contemporary Christian music",
+    releaseYear: 2018,
+    duration: 3.03,
+    image: lauren,
+  },
+  {
+    id: 18,
+    title: "You Say",
+    artist: "Lauren Daigle",
+    album: "Look Up Child",
+    genre: "contemporary Christian music",
+    releaseYear: 2018,
+    duration: 3.03,
+    image: lauren,
+  },
+  {
+    id: 19,
+    title: "Look Up Child",
+    artist: "Lauren Daigle",
+    album: "Look Up Child",
+    genre: "contemporary Christian music",
+    releaseYear: 2018,
+    duration: 3.03,
+    image: lauren,
+  },
+  {
+    id: 20,
+    title: "Remember",
+    artist: "Lauren Daigle",
+    album: "Look Up Child",
+    genre: "contemporary Christian music",
+    releaseYear: 2018,
+    duration: 3.03,
+    image: lauren,
+  },
+  {
+    id: 21,
+    title: "Love Like This",
+    artist: "Lauren Daigle",
+    album: "Look Up Child",
+    genre: "contemporary Christian music",
+    releaseYear: 2018,
+    duration: 3.03,
+    image: lauren,
+  },
+  {
+    id: 22,
+    title: "Rescue",
+    artist: "Lauren Daigle",
+    album: "Look Up Child",
+    genre: "contemporary Christian music",
+    releaseYear: 2018,
+    duration: 3.03,
+    image: lauren,
   },
 ];
 export default allSongs;
