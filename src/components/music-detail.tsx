@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import { SongsModel } from "./assets/songs";
 import allSongs from "./assets/songs";
 import styled from "@emotion/styled";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./store";
+import { editSong, deleteSong, addSong } from "./musicSlice";
+import { useState } from "react";
 interface DisplaySongsProps {
   songList: SongsModel[];
 }
@@ -76,6 +79,7 @@ const AlbumList = styled.div`
   background-color: #f4f4f4;
   margin-bottom: 10px;
   height: 150px;
+  cursor: pointer;
 `;
 const SongListCard = styled.div`
   width: 700px;
@@ -108,6 +112,7 @@ const EditButton = styled.button`
   padding: 15px;
   border-radius: 10px;
   border: none;
+  cursor: pointer;
 `;
 const DeleteButton = styled.button`
   background-color: red;
@@ -115,65 +120,80 @@ const DeleteButton = styled.button`
   padding: 15px;
   border-radius: 10px;
   border: none;
+  cursor: pointer;
 `;
+
 const MusicDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const songId = parseInt(id ?? "0", 10);
 
   const song_List: SongsModel[] = allSongs;
-  const currentSong: SongsModel | undefined = song_List.find(
-    (song) => song.id === songId
-  );
-  const albumList: SongsModel[] | undefined = allSongs.filter(
+  const currentSong: SongsModel =
+    song_List.find((song) => song.id === songId) ?? song_List[0];
+  //const index: number = song_List.indexOf(currentSong);
+  const albumList: SongsModel[] = allSongs.filter(
     (song) => song.album === currentSong?.album
   );
+  const index = albumList.indexOf(currentSong);
+  const [selectedSongIndex, setSelectedSongIndex] = useState<number>(index);
+  const handleSongClick = (index: number) => {
+    setSelectedSongIndex(index);
+  };
+  const all_Songs = useSelector((state: RootState) => state.music.allSongs);
+  const dispatch = useDispatch();
 
-  if (currentSong) {
-    console.log(currentSong.title);
-    console.log(albumList);
-  } else {
-    console.log("Song not found");
-  }
-  {
-    currentSong ? (
-      <div>
-        <p>{currentSong.title}</p>
-      </div>
-    ) : (
-      <p>Song data not found</p>
-    );
-  }
   return (
     <ContainerDiv>
       <LeftSection>
         {" "}
-        {currentSong ? (
+        {selectedSongIndex !== null ? (
           <div>
-            <Container>
+            <Container key={albumList[selectedSongIndex].id}>
               <SongCard>
-                <SongImage src={currentSong.image} alt="Song Cover" />
+                <SongImage
+                  src={albumList[selectedSongIndex].image}
+                  alt="Song Cover"
+                />
                 <SongDetails>
-                  <Title>{currentSong.title}</Title>
-                  <Artist>{currentSong.artist}</Artist>
-                  <Album>{currentSong.album}</Album>
-                  <Album>{"Gener -" + currentSong.genre}</Album>
-                  <Album>{"Release Year -" + currentSong.releaseYear}</Album>
-                  <Album>{"Duration -" + currentSong.duration}</Album>
+                  <Title>{albumList[selectedSongIndex].title}</Title>
+                  <Artist>{albumList[selectedSongIndex].artist}</Artist>
+                  <Album>{albumList[selectedSongIndex].album}</Album>
+                  <Album>
+                    {"Gener -" + albumList[selectedSongIndex].genre}
+                  </Album>
+                  <Album>
+                    {"Release Year -" +
+                      albumList[selectedSongIndex].releaseYear}
+                  </Album>
+                  <Album>
+                    {"Duration -" + albumList[selectedSongIndex].duration}
+                  </Album>
                   <ButtonContainer>
-                    <EditButton>Edit</EditButton>
-                    <DeleteButton>Delete</DeleteButton>
+                    <EditButton onClick={() => dispatch(editSong)}>
+                      Edit
+                    </EditButton>
+                    <DeleteButton
+                    //  onClick={() => dispatch(deleteSong(currentSong))}
+                    >
+                      Delete
+                    </DeleteButton>
                   </ButtonContainer>
                 </SongDetails>
               </SongCard>
             </Container>
           </div>
         ) : (
-          <p>Song data not found</p>
+          <p>Select a song to display details</p>
         )}
       </LeftSection>
       <RightSection>
-        {albumList.map((song: SongsModel) => (
-          <AlbumList>
+        {albumList.map((song, index) => (
+          <AlbumList
+            key={index}
+            onClick={() => {
+              handleSongClick(index);
+            }}
+          >
             <SongListCard>
               <SongListImage src={song.image} alt="Song Cover"></SongListImage>
               <SongListDetails>{song.title}</SongListDetails>
