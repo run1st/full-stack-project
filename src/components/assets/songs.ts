@@ -1,6 +1,7 @@
 import hana from "./images/hana.jpg";
 import lauren from "./images/lauren.jpg";
 import song from "./images/song.jpg";
+
 export interface SongsModel {
   id: number;
   title: string;
@@ -12,7 +13,7 @@ export interface SongsModel {
   duration: number;
   image: string;
 }
-const allSongs: SongsModel[] = [
+export const allSongs: SongsModel[] = [
   {
     id: 1,
     title: "Kahin",

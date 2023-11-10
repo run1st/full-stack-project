@@ -1,5 +1,5 @@
 //import { useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { SongsModel } from "./assets/songs";
 import allSongs from "./assets/songs";
 import styled from "@emotion/styled";
@@ -126,7 +126,21 @@ const DeleteButton = styled.button`
 const MusicDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const songId = parseInt(id ?? "0", 10);
+  const navigate = useNavigate();
 
+  const handleButtonClick = (id: number) => {
+    // Navigate to a new page
+    navigate(`/songs/detail/edit/${id}`);
+  };
+  const handleUrlChange = (id: number) => {
+    const newUrl = `/songs/detail/${id}`;
+
+    // Change the URL without triggering a full page reload
+    window.history.pushState({}, "", newUrl);
+
+    // // Optionally, you can manually update the browser location
+    // window.location.href = newUrl;
+  };
   const song_List: SongsModel[] = allSongs;
   const currentSong: SongsModel =
     song_List.find((song) => song.id === songId) ?? song_List[0];
@@ -169,11 +183,16 @@ const MusicDetail: React.FC = () => {
                     {"Duration -" + albumList[selectedSongIndex].duration}
                   </Album>
                   <ButtonContainer>
-                    <EditButton onClick={() => dispatch(editSong)}>
+                    <EditButton
+                      onClick={() =>
+                        handleButtonClick(albumList[selectedSongIndex].id)
+                      }
+                    >
                       Edit
                     </EditButton>
                     <DeleteButton
                     //  onClick={() => dispatch(deleteSong(currentSong))}
+                    //onClick={() => dispatch(editSong)}
                     >
                       Delete
                     </DeleteButton>
@@ -192,6 +211,8 @@ const MusicDetail: React.FC = () => {
             key={index}
             onClick={() => {
               handleSongClick(index);
+
+              handleUrlChange(song.id);
             }}
           >
             <SongListCard>
