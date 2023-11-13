@@ -141,11 +141,13 @@ const MusicDetail: React.FC = () => {
     // // Optionally, you can manually update the browser location
     // window.location.href = newUrl;
   };
-  const song_List: SongsModel[] = allSongs;
+  const song_List: SongsModel[] = useSelector(
+    (state: RootState) => state.music.allSongs
+  );
   const currentSong: SongsModel =
     song_List.find((song) => song.id === songId) ?? song_List[0];
   //const index: number = song_List.indexOf(currentSong);
-  const albumList: SongsModel[] = allSongs.filter(
+  const albumList: SongsModel[] = song_List.filter(
     (song) => song.album === currentSong?.album
   );
   const index = albumList.indexOf(currentSong);
@@ -153,8 +155,6 @@ const MusicDetail: React.FC = () => {
   const handleSongClick = (index: number) => {
     setSelectedSongIndex(index);
   };
-  const all_Songs = useSelector((state: RootState) => state.music.allSongs);
-  const dispatch = useDispatch();
 
   return (
     <ContainerDiv>
@@ -162,30 +162,30 @@ const MusicDetail: React.FC = () => {
         {" "}
         {selectedSongIndex !== null ? (
           <div>
-            <Container key={albumList[selectedSongIndex].id}>
+            <Container key={albumList[selectedSongIndex]?.id}>
               <SongCard>
                 <SongImage
-                  src={albumList[selectedSongIndex].image}
+                  src={albumList[selectedSongIndex]?.image}
                   alt="Song Cover"
                 />
                 <SongDetails>
-                  <Title>{albumList[selectedSongIndex].title}</Title>
-                  <Artist>{albumList[selectedSongIndex].artist}</Artist>
-                  <Album>{albumList[selectedSongIndex].album}</Album>
+                  <Title>{albumList[selectedSongIndex]?.title}</Title>
+                  <Artist>{albumList[selectedSongIndex]?.artist}</Artist>
+                  <Album>{albumList[selectedSongIndex]?.album}</Album>
                   <Album>
-                    {"Gener -" + albumList[selectedSongIndex].genre}
+                    {"Gener -" + albumList[selectedSongIndex]?.genre}
                   </Album>
                   <Album>
                     {"Release Year -" +
-                      albumList[selectedSongIndex].releaseYear}
+                      albumList[selectedSongIndex]?.releaseYear}
                   </Album>
                   <Album>
-                    {"Duration -" + albumList[selectedSongIndex].duration}
+                    {"Duration -" + albumList[selectedSongIndex]?.duration}
                   </Album>
                   <ButtonContainer>
                     <EditButton
                       onClick={() =>
-                        handleButtonClick(albumList[selectedSongIndex].id)
+                        handleButtonClick(albumList[selectedSongIndex]?.id)
                       }
                     >
                       Edit

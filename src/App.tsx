@@ -6,6 +6,7 @@ import Home from "./components/home";
 import SongList from "./components/Songs";
 import MusicDetail from "./components/music-detail";
 import EditSong from "./components/edit-song";
+import AddNewSong from "./components/add_new_song";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         <Route path="/" Component={Home}></Route>
         <Route path="/songs" Component={SongList}></Route>
         <Route path="/about"></Route>
+        <Route path="/add" Component={AddNewSong}>
+          {" "}
+        </Route>
         <Route path="/songs/detail/:id" Component={MusicDetail}></Route>
         <Route path="/songs/detail/edit/:id" Component={EditSong}></Route>
       </Routes>

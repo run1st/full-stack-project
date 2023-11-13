@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import allSongs, { SongsModel } from "./assets/songs";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./store";
+import { editSong } from "./musicSlice";
 interface ImageProps {
   imageUrl: string;
 }
@@ -64,12 +67,10 @@ const Input = styled.input`
   }
 `;
 const EditSong: React.FC = () => {
+  const all_Songs = useSelector((state: RootState) => state.music.allSongs);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleGoBack = () => {
-    // Navigate back
-    navigate(-1);
-  };
   const { id } = useParams<{ id: string }>();
   const songId = parseInt(id ?? "", 10);
   const songToBeEdited =
@@ -78,6 +79,13 @@ const EditSong: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEditedSong((previous) => ({ ...previous, [name]: value }));
+  };
+  const handleUpdateAndGoBack = () => {
+    dispatch(editSong(editedSong));
+    console.log(editedSong.duration);
+    console.log(all_Songs);
+    // Navigate back
+    navigate(-1);
   };
 
   return (
@@ -91,6 +99,7 @@ const EditSong: React.FC = () => {
             name="title"
             defaultValue={songToBeEdited?.title}
             // value={songToBeEdited?.title}
+            onChange={handleInputChange}
           ></Input>
         </FormGroup>
         <FormGroup>
@@ -100,6 +109,7 @@ const EditSong: React.FC = () => {
             name="artist"
             defaultValue={songToBeEdited?.artist}
             // value={songToBeEdited?.artist}
+            onChange={handleInputChange}
           ></Input>{" "}
         </FormGroup>
         <FormGroup>
@@ -108,14 +118,16 @@ const EditSong: React.FC = () => {
             type="text"
             name="album"
             defaultValue={songToBeEdited?.album}
+            onChange={handleInputChange}
           ></Input>{" "}
         </FormGroup>
         <FormGroup>
           <Label>Gener</Label>
           <Input
             type="text"
-            name="gnener"
+            name="genre"
             defaultValue={songToBeEdited?.genre}
+            onChange={handleInputChange}
           ></Input>{" "}
         </FormGroup>
         <FormGroup>
@@ -123,8 +135,9 @@ const EditSong: React.FC = () => {
           <Input
             placeholder=""
             type="text"
-            name="year"
+            name="releaseYear"
             defaultValue={songToBeEdited?.releaseYear}
+            onChange={handleInputChange}
           ></Input>{" "}
         </FormGroup>
         <FormGroup>
@@ -133,9 +146,10 @@ const EditSong: React.FC = () => {
             type="text"
             name="duration"
             defaultValue={songToBeEdited?.duration}
+            onChange={handleInputChange}
           ></Input>{" "}
         </FormGroup>
-        <SaveEdit onClick={handleGoBack}>Save</SaveEdit>
+        <SaveEdit onClick={handleUpdateAndGoBack}>Save</SaveEdit>
         <CancelEdit>Cancel</CancelEdit>
       </EditSongWrapper>
     </>

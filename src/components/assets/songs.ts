@@ -13,7 +13,7 @@ export interface SongsModel {
   duration: number;
   image: string;
 }
-export const allSongs: SongsModel[] = [
+export let allSongs: SongsModel[] = [
   {
     id: 1,
     title: "Kahin",

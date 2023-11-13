@@ -42,9 +42,9 @@ const Header: React.FC = () => (
       <Link to={"/songs"}>
         <StyledMenu name="Songs">Songs</StyledMenu>
       </Link>
-      <Link to={"/about"}>
+      <Link to={"/add"}>
         {" "}
-        <StyledMenu name="home">name</StyledMenu>
+        <StyledMenu name="home">Add New Song</StyledMenu>
       </Link>
       <Link to={"/about"}>
         {" "}

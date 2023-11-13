@@ -24,14 +24,20 @@ const musicSlice = createSlice({
     addSong: (state, action: PayloadAction<SongsModel>) => {
       state.allSongs.push(action.payload);
     },
+
     editSong: (state, action: PayloadAction<SongsModel>) => {
       const index = state.allSongs.findIndex(
         (song) => song.id === action.payload.id
       );
       if (index !== -1) {
-        state.allSongs[index] = action.payload;
+        state.allSongs = [
+          ...state.allSongs.slice(0, index),
+          action.payload,
+          ...state.allSongs.slice(index + 1),
+        ];
       }
     },
+
     deleteSong: (state, action: PayloadAction<SongsModel>) => {
       state.allSongs = state.allSongs.filter(
         (song) => song.id !== action.payload.id
