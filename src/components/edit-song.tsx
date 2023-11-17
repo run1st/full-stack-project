@@ -136,7 +136,7 @@ const EditSong: React.FC = () => {
             placeholder=""
             type="text"
             name="releaseYear"
-            defaultValue={songToBeEdited?.releaseYear}
+            //  defaultValue={songToBeEdited?.releaseYear}
             onChange={handleInputChange}
           ></Input>{" "}
         </FormGroup>

@@ -4,9 +4,9 @@ import styled from "@emotion/styled";
 const ImageUploaderContainer = styled.div`
   position: relative;
   margin-bottom: 20px;
-  max-width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
+  max-width: 31.5%;
+  margin-left: auto;
+  margin-right: auto;
 `;
 const CustomFileInputLabel = styled.label`
   display: block;
@@ -31,12 +31,16 @@ const PreviewImage = styled.img`
   margin-top: 10px;
   border-radius: 5px;
 `;
-const ImageUploader: React.FC = () => {
+interface ImageUploaderProps {
+  onImageChange: (file: File | null) => void;
+}
+const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageChange }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] ?? null;
     setSelectedImage(file);
+    onImageChange(file);
   };
 
   return (
