@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
 import { editSong, deleteSong, addSong } from "./musicSlice";
 import { useState } from "react";
+
 interface DisplaySongsProps {
   songList: SongsModel[];
 }
@@ -14,11 +15,12 @@ const ContainerDiv = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
-  background-color: #f4f4f4;
+ background-image: url(https://adminlte.io/wp-content/uploads/2021/04/hero-bg.jpg);
+}
 `;
 const RightSection = styled.div`
   flex: 50%;
-  background-color: #f4f4f4;
+  background-color: #050826;
   height: 550px;
   overflow-y: scroll;
   margin-top: 80px;
@@ -33,7 +35,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f1f1f1;
+  background-color: #050826;
 `;
 
 const SongCard = styled.div`
@@ -76,7 +78,7 @@ const AlbumList = styled.div`
   align-items: center;
   justify-content: center;
   width: 50vw;
-  background-color: #f4f4f4;
+  background-color: #050826;
   margin-bottom: 10px;
   height: 150px;
   cursor: pointer;
@@ -127,6 +129,7 @@ const MusicDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const songId = parseInt(id ?? "0", 10);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleButtonClick = (id: number) => {
     // Navigate to a new page
@@ -191,8 +194,8 @@ const MusicDetail: React.FC = () => {
                       Edit
                     </EditButton>
                     <DeleteButton
-                    //  onClick={() => dispatch(deleteSong(currentSong))}
-                    //onClick={() => dispatch(editSong)}
+                      onClick={() => dispatch(deleteSong(currentSong))}
+                      //onClick={() => dispatch(editSong)}
                     >
                       Delete
                     </DeleteButton>

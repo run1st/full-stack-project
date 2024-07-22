@@ -8,6 +8,7 @@ const ImageUploaderContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 `;
+
 const CustomFileInputLabel = styled.label`
   display: block;
   padding: 10px;

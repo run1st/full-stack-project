@@ -10,7 +10,7 @@ import { addSong, editSong } from "./musicSlice";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 const BackgroundDiv = styled.div`
-  background-color: #165356;
+  background-color: #050826;
   width: 100%;
   height: 100%;
 `;
@@ -41,7 +41,7 @@ const SaveAdd = styled.div`
   cursor: pointer;
   color: white;
   &:hover {
-    background-color: gray;
+    background-color: purple;
     border: 1px solid white;
     padding: 10px;
   }
@@ -96,6 +96,7 @@ const AddNewSong: React.FC = () => {
   };
   const [newMusic, setNewMusic] = useState<SongsModel>(newSong);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const handleImageChange = (file: File | null) => {
     setSelectedImage(file);
 
@@ -107,13 +108,16 @@ const AddNewSong: React.FC = () => {
     });
     if (file) {
       // Set the image property in the newSong state
+
       setNewMusic((prevSong) => ({
         ...prevSong,
         image: URL.createObjectURL(file),
       }));
     }
   };
+  //handles the date input field
   const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
     setNewMusic((prevSong) => ({
       ...prevSong,
       releaseYear: date || new Date(), // Use the selected date or default to the current date
@@ -188,7 +192,11 @@ const AddNewSong: React.FC = () => {
               onChange={handleInputChange}
               // value={songToBeEdited?.title}
             ></Input> */}
-            <StyledDatePicker onChange={handleDateChange}></StyledDatePicker>
+            <StyledDatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="yyyy/MM/dd"
+            ></StyledDatePicker>
           </FormGroup>
 
           <FormGroup>

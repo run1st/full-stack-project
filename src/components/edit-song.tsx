@@ -13,14 +13,21 @@ interface ImageProps {
 // const BackDiv = styled.div<ImageProps>`
 //   background-image: ${(props) => `url(${props.imageUrl})`};
 // `;
+const ContainerDiv = styled.div`
+  padding-bottom: 20px;
+  background-color: #050826;
+  height: 650px;
+`;
 const EditSongWrapper = styled.div`
+  margin-top: 10px;
+  margin-bottom: 10px;
   max-width: 400px;
   margin: 30px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: white;
-  height: 600px;
+  max-height: 600px;
   justify-content: center;
   align-items: center;
 `;
@@ -90,68 +97,70 @@ const EditSong: React.FC = () => {
 
   return (
     <>
-      <EditSongWrapper>
-        <Title>Some thing to change</Title>
-        <FormGroup>
-          <Label>Title</Label>
-          <Input
-            type="text"
-            name="title"
-            defaultValue={songToBeEdited?.title}
-            // value={songToBeEdited?.title}
-            onChange={handleInputChange}
-          ></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label>Artist Name</Label>
-          <Input
-            type="text"
-            name="artist"
-            defaultValue={songToBeEdited?.artist}
-            // value={songToBeEdited?.artist}
-            onChange={handleInputChange}
-          ></Input>{" "}
-        </FormGroup>
-        <FormGroup>
-          <Label>Album Name</Label>
-          <Input
-            type="text"
-            name="album"
-            defaultValue={songToBeEdited?.album}
-            onChange={handleInputChange}
-          ></Input>{" "}
-        </FormGroup>
-        <FormGroup>
-          <Label>Gener</Label>
-          <Input
-            type="text"
-            name="genre"
-            defaultValue={songToBeEdited?.genre}
-            onChange={handleInputChange}
-          ></Input>{" "}
-        </FormGroup>
-        <FormGroup>
-          <Label>Release Year</Label>
-          <Input
-            placeholder=""
-            type="text"
-            name="releaseYear"
-            //  defaultValue={songToBeEdited?.releaseYear}
-            onChange={handleInputChange}
-          ></Input>{" "}
-        </FormGroup>
-        <FormGroup>
-          <Label>duration</Label>
-          <Input
-            type="text"
-            name="duration"
-            defaultValue={songToBeEdited?.duration}
-            onChange={handleInputChange}
-          ></Input>{" "}
-        </FormGroup>
-        <SaveEdit onClick={handleUpdateAndGoBack}>Save</SaveEdit>
-        <CancelEdit>Cancel</CancelEdit>
-      </EditSongWrapper>
+      <ContainerDiv>
+        <EditSongWrapper>
+          <Title>Some thing to change</Title>
+          <FormGroup>
+            <Label>Title</Label>
+            <Input
+              type="text"
+              name="title"
+              defaultValue={songToBeEdited?.title}
+              // value={songToBeEdited?.title}
+              onChange={handleInputChange}
+            ></Input>
+          </FormGroup>
+          <FormGroup>
+            <Label>Artist Name</Label>
+            <Input
+              type="text"
+              name="artist"
+              defaultValue={songToBeEdited?.artist}
+              // value={songToBeEdited?.artist}
+              onChange={handleInputChange}
+            ></Input>{" "}
+          </FormGroup>
+          <FormGroup>
+            <Label>Album Name</Label>
+            <Input
+              type="text"
+              name="album"
+              defaultValue={songToBeEdited?.album}
+              onChange={handleInputChange}
+            ></Input>{" "}
+          </FormGroup>
+          <FormGroup>
+            <Label>Gener</Label>
+            <Input
+              type="text"
+              name="genre"
+              defaultValue={songToBeEdited?.genre}
+              onChange={handleInputChange}
+            ></Input>{" "}
+          </FormGroup>
+          <FormGroup>
+            <Label>Release Year</Label>
+            <Input
+              placeholder=""
+              type="text"
+              name="releaseYear"
+              //  defaultValue={songToBeEdited?.releaseYear}
+              onChange={handleInputChange}
+            ></Input>{" "}
+          </FormGroup>
+          <FormGroup>
+            <Label>duration</Label>
+            <Input
+              type="text"
+              name="duration"
+              defaultValue={songToBeEdited?.duration}
+              onChange={handleInputChange}
+            ></Input>{" "}
+          </FormGroup>
+          <SaveEdit onClick={handleUpdateAndGoBack}>Save</SaveEdit>
+          <CancelEdit>Cancel</CancelEdit>
+        </EditSongWrapper>
+      </ContainerDiv>
     </>
   );
 };

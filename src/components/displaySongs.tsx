@@ -16,6 +16,7 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin: 30px;
+  background-color: #050826;
 `;
 const SongCard = styled.div`
   border: 1px solid #ccc;
@@ -63,8 +64,8 @@ const DisplaySongs: React.FC<DisplaySongsProps> = ({ songList }) => (
             }}
           >
             {" "}
-            <h3>{song.title}</h3>
-            <p>{song.artist}</p>{" "}
+            <h3 style={{ color: "white" }}>{song.title}</h3>
+            <p style={{ color: "white" }}>{song.artist}</p>{" "}
           </Link>
         </SongCard>
       ))}
