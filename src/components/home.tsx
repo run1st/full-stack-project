@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 // }
 //   font-family: Mulish, sans-serif;
 // }`;
+import { FaHome } from "react-icons/fa";
 const ContainerDiv = styled.div`
   background-image: url(https://adminlte.io/wp-content/uploads/2021/04/hero-bg.jpg);
   font-family: Mulish, sans-serif;
@@ -11,6 +12,7 @@ const ContainerDiv = styled.div`
 
   height: 100vh; /* Set height to 100vh for full viewport height */
 `;
+
 const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -78,6 +80,19 @@ const Sidebar = styled.div`
   width: 200px;
   background-color: #f0f0f0;
   padding: 1rem;
+  border-radius: 25px;
+`;
+const SidebarItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  &:hover {
+    background-color: #f0fff0;
+  }
 `;
 const MainContent = styled.div`
   display: flex;
@@ -90,6 +105,13 @@ const Home: React.FC = () => (
     <ContainerDiv>
       <Sidebar>
         <p>hello you know what i am doing i am doing side bar</p>
+
+        <SidebarItem>
+          <FaHome size={24} color="#333"></FaHome>
+        </SidebarItem>
+        <SidebarItem>Home</SidebarItem>
+        <SidebarItem>Home</SidebarItem>
+        <SidebarItem>Home</SidebarItem>
       </Sidebar>
       <MainContent>
         <GridWrapper>
