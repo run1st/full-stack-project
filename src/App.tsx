@@ -8,6 +8,7 @@ import MusicDetail from "./components/music-detail";
 import EditSong from "./components/edit-song";
 import AddNewSong from "./components/add_new_song";
 
+// main function
 function App() {
   return (
     <>
